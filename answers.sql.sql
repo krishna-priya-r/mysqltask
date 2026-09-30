@@ -52,6 +52,25 @@ VALUES
        
 -- 6. Write a query to display the courses that have more than 2 students.
              
-             
+             select course_name,duration,fee from course inner join Student on Student.courseid=course.course_id group by course.course_id having count(Student.student_name)>2;
+
+ -- 7. Write a query to display the student name, mark, and course name using an `INNER JOIN`.
+
+        select student_name,mark,course_name from course inner join Student on Student.courseid=course.course_id;
+
+-- 8. Write a query to display all courses and their students, including courses that have no students, using a `LEFT JOIN`.
+
+     select * from course left join Student on Student.courseid=course.course_id;
+
+-- 9. Write a query to display students whose marks are greater than the overall average mark using a subquery.
+
+	 select * from Student where mark >  (select avg(mark) from Student);
+
+-- 10. Write a query to find the second-highest mark and display the student name, mark, and course name using a subquery and `JOIN`.
+
+     select student_name,mark,course_name from Student inner join course on Student.courseid=course.course_id where student.mark = (select student.mark from Student order by mark desc limit 1 offset 1);
+
+
+
      
 	
